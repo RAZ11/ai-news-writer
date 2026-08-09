@@ -7,3 +7,5 @@ langchain-groq
 pydantic
 python-dotenv
 tavily-python
+sqlalchemy 
+psycopg2-binary
