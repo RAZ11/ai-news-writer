@@ -20,5 +20,10 @@ class NewsArticle(Base):
     research = Column(Text)
     article = Column(Text, nullable=False)
     fact_check = Column(Text)
-    created_at = Column(DateTime(timezone=True))
-    server_default = func.now()
+    created_at = Column(
+        DateTime(timezone=True),
+        server_default=func.now()
+    )
+    
+
+

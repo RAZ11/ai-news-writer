@@ -1,0 +1,6 @@
+__pycatch__
+*.pyc
+.venv
+.env
+.git
+.gitignore

@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres:17
+    container_name: ai-news-db
+    environment:
+      POSTGRES_DB: ai_news_writer
+      POSTGRES_USER: raz
+      POSTGRES_PASSWORD: raz9540
+    ports:
+      - "5432:5432"
+
+  api:
+    build: .
+    container_name: ai-news-api
+    ports:
+      - "8000:8000"
+
+    env_file:
+      - .env
+
+    environment:
+      GOOGLE_API_KEY: ${GOOGLE_API_KEY}
+      GROQ_API_KEY: ${GROQ_API_KEY}
+      DATABASE_URL: ${DATABASE_URL}
+
+    depends_on:
+      - db

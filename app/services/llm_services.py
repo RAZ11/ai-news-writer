@@ -5,6 +5,9 @@ import os
 
 load_dotenv()
 
+print("GOOGLE_API_KEY =", os.getenv("GOOGLE_API_KEY"))
+print("GROQ_API_KEY =", os.getenv("GROQ_API_KEY"))
+
 llm = ChatGoogleGenerativeAI(
     model="gemini-3.1-flash-lite",
     temperature=0

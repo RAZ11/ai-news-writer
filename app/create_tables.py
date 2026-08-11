@@ -1,6 +1,6 @@
-from db.database import engine
-from db.database import Base
-from db.models import NewsArticle
+from app.db.database import engine
+from app.db.database import Base
+from app.db.models import NewsArticle
 
 Base.metadata.create_all(bind=engine)
 
