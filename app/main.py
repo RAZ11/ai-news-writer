@@ -11,6 +11,12 @@ app = FastAPI(
     title="AI News Writer"
 )
 
+@app.get("/")
+def home():
+    return {
+        "message": "AI News Writer v2 By Rajesh"
+    }
+
 @app.post("/generate_news")
 def generate_news(request:NewsRequest, db:Session = Depends(get_db)):
 
