@@ -29,9 +29,9 @@ def generate_news(request:NewsRequest, db:Session = Depends(get_db)):
     saved_article = save_article(
         db=db,
         topic=result['topic'],
-        research=str(result['research']),
-        article=str(result['final_article']),
-        fact_check=str(result['fact_check_report'])
+        research=extract_text(result["research"]),
+        article=extract_text(result["final_article"]),
+        fact_check=extract_text(result["fact_check_report"])
 
     )
 
@@ -57,7 +57,20 @@ def get_aricle_by_id(article_id: int, db: Session = Depends(get_db)):
         article_id
     )
 
+def extract_text(content):
+    if isinstance(content, str):
+        return content
 
+    if isinstance(content, list):
+        text_parts = []
+
+        for item in content:
+            if isinstance(item, dict) and item.get("type") == "text":
+                text_parts.append(item.get("text", ""))
+
+        return "\n".join(text_parts)
+
+    return str(content)
 
 # @app.put("/articles/{article_id}")
 # def update_article(
