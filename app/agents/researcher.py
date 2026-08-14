@@ -1,5 +1,6 @@
 
 from app.services.llm_services import llm
+from app.services.bedrock_services import bedrock_llm
 
 def researcher(state):
 
@@ -26,7 +27,7 @@ def researcher(state):
 
     """
 
-    response = llm.invoke(prompt)
+    response = bedrock_llm.invoke(prompt)
     
     print("\n=== RESEARCH OUTPUT ===")
     print(response)

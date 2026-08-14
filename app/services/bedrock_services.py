@@ -1,7 +1,8 @@
+import os
 from langchain_aws import ChatBedrockConverse
 
 bedrock_llm = ChatBedrockConverse(
-    model="deepseek.v3.2",
+    model=os.getenv("BEDROCK_MODEL_NAME"),
     region_name="us-east-1"
 )
 
