@@ -1,4 +1,5 @@
 from app.services.llm_services import llm
+from app.services.bedrock_services import bedrock_llm
 
 
 def editor(state):
@@ -25,7 +26,7 @@ Append a Sources section.
 
 """
 
-    response = llm.invoke(prompt)
+    response = bedrock_llm.invoke(prompt)
 
     return{
         "final_article": response.content
