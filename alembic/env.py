@@ -5,8 +5,9 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from app.db.database import Base
+from app.db.database import Base, DATABASE_URL
 from app.db.models import NewsArticle
+import os
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -22,8 +23,12 @@ if config.config_file_name is not None:
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 
-print("Tables found:", Base.metadata.tables.keys())
-print(Base.metadata.tables["news_articles"].columns.keys())
+config = context.config
+
+database_url = os.getenv("DATABASE_URL")
+
+if database_url:
+    config.set_main_option("sqlalchemy.url", database_url)
 
 target_metadata = Base.metadata
 
