@@ -45,5 +45,3 @@ class NewsArticle(Base):
         DateTime(timezone=True),
         nullable=True
     )
-
-   
