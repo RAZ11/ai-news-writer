@@ -27,7 +27,24 @@ def publisher_agent(state):
 
     response = llm.invoke(prompt)
 
-    data = json.loads(response.content)
+    content = response.content
+
+    if isinstance(content, str):
+        json_text = content
+
+    elif isinstance(content, list):
+        json_text = ""
+
+        for item in content:
+            if isinstance(item, dict) and item.get("type") == "text":
+                json_text += item.get("text", "")
+
+    else:
+        raise ValueError(f"Unexpected response type: {type(content)}")
+
+    print("JSON_TEXT:", json_text)
+
+    data = json.loads(json_text)
 
     return {
         "title": data["title"],
