@@ -7,13 +7,21 @@ def save_article(
         topic:str,
         research:str,
         article:str,
-        fact_check:str
+        fact_check:str,
+        title:str,
+        summary:str,
+        category:str,
+        tags:str
 ):
     news_article = NewsArticle(
         topic=topic,
         research=research,
         article=article,
-        fact_check=fact_check
+        fact_check=fact_check,
+        title=title,
+        summary=summary,
+        category=category,
+        tags=tags
     )
     db.add(news_article)
 

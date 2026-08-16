@@ -6,6 +6,7 @@ from app.agents.researcher import researcher
 from app.agents.writer import writer
 from app.agents.fact_checker import fact_checker, route_after_fact_check
 from app.agents.editor import editor
+from app.agents.publisher_agent import publisher_agent
 
 builder = StateGraph(NewsState)
 builder.add_node("search_agent", search_agent)
@@ -13,6 +14,7 @@ builder.add_node("researcher", researcher)
 builder.add_node("writer", writer)
 builder.add_node("fact_checker", fact_checker)
 builder.add_node("editor", editor)
+builder.add_node("publisher", publisher_agent)
 
 builder.set_entry_point("search_agent")
 
@@ -31,7 +33,9 @@ builder.add_conditional_edges(
     }
 )
 
-builder.add_edge("editor", END)
+builder.add_edge("editor","publisher")
+
+builder.add_edge("publisher", END)
 
 
 graph = builder.compile()

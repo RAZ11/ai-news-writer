@@ -31,14 +31,22 @@ def generate_news(request:NewsRequest, db:Session = Depends(get_db)):
         topic=result['topic'],
         research=extract_text(result["research"]),
         article=extract_text(result["final_article"]),
-        fact_check=extract_text(result["fact_check_report"])
+        fact_check=extract_text(result["fact_check_report"]),
+        title=result["title"]
+        summary=result["summary"]
+        category=result["category"]
+        tags=",".join(result["tags"])
 
     )
 
     return {
         "id": saved_article.id,
         "topic": saved_article.topic,
-        "article": saved_article.article
+        "article": saved_article.article,
+        "title":saved_article.title,
+        "summary":saved_article.summary,
+        "category":saved_article.category,
+        "tags":saved_article.tags
     }
 
 @app.get("/get_article")
