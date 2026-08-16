@@ -6,7 +6,7 @@ from app.agents.researcher import researcher
 from app.agents.writer import writer
 from app.agents.fact_checker import fact_checker, route_after_fact_check
 from app.agents.editor import editor
-from app.agents.publisher_agent import publisher_agent
+from app.agents.publisher import publisher_agent
 
 builder = StateGraph(NewsState)
 builder.add_node("search_agent", search_agent)

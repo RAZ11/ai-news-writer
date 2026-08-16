@@ -17,3 +17,11 @@ class NewsState(TypedDict):
     retry_count: int
 
     final_article: str
+
+    title: str
+
+    summary: str
+
+    category: str
+
+    tags: list[str]
