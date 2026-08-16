@@ -35,7 +35,7 @@ def generate_news(request:NewsRequest, db:Session = Depends(get_db)):
         title=result["title"],
         summary=result["summary"],
         category=result["category"],
-        tags=",".join(result["tags"])
+        tags=result["tags"]
 
     )
 

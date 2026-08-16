@@ -15,14 +15,42 @@ def publisher_agent(state):
 
     {article}
 
+        
+    Write the article in Business Standard style.
+
+    Requirements:
+    - Strong headline
+    - 2-3 sentence standfirst
+    - Journalistic tone
+    - Historical context
+    - Explain why the event matters
+    - No bullet points
+    - No markdown
+    - Professional newspaper style
+    - 300-500 words
+
+   
+    Return ONLY valid JSON.
+
     Generate:
 
-    1. Title
-    2. Summary (5-6 lines)
-    3. Category
-    4. Tags
+        1. Title
+        2. Summary (5-6 lines)
+        3. Category
+        4. Tags
 
-    Return JSON format.
+    Example:
+
+    {{
+    "title": "Sample Title",
+    "summary": "500-800 word article",
+    "category": "Business",
+    "tags": ["stock market", "finance"]
+    }}
+
+    Do not return markdown.
+    Do not return explanations.
+    Do not return code fences.
     """
 
     response = llm.invoke(prompt)
@@ -46,9 +74,11 @@ def publisher_agent(state):
 
     data = json.loads(json_text)
 
+    print("PUBLISHER_DATA:", data)
+
     return {
-        "title": data["title"],
-        "summary": data["summary"],
-        "category": data["category"],
-        "tags": data["tags"]
+        "title": data.get("title") or data.get("headline", ""),
+        "summary": data.get("summary", ""),
+        "category": data.get("category", ""),
+        "tags": data.get("tags", [])
     }
