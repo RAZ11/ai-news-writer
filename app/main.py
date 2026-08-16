@@ -32,9 +32,9 @@ def generate_news(request:NewsRequest, db:Session = Depends(get_db)):
         research=extract_text(result["research"]),
         article=extract_text(result["final_article"]),
         fact_check=extract_text(result["fact_check_report"]),
-        title=result["title"]
-        summary=result["summary"]
-        category=result["category"]
+        title=result["title"],
+        summary=result["summary"],
+        category=result["category"],
         tags=",".join(result["tags"])
 
     )
